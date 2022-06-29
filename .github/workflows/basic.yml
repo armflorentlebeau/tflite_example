@@ -41,7 +41,7 @@ jobs:
           platforms: arm64
           push: false
           builder: ${{ steps.buildx.outputs.name }}
-          tags: "tflist_example:latest"
+          tags: "tflite_example:latest"
           load: true
 
       # Upload artifact
