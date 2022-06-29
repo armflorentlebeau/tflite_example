@@ -66,7 +66,7 @@ jobs:
       - name: Download image
         uses: ishworkh/docker-image-artifact-download@v1
         with:
-          image: "action_image_artifact_tflite_example:latest"
+          image: "tflite_example:latest"
 
       # Run application
       - name: Run application
