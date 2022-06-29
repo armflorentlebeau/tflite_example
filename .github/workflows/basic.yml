@@ -48,7 +48,7 @@ jobs:
           platforms: arm64
           push: true
           builder: ${{ steps.buildx.outputs.name }}
-          tags: ${{ github.actor }}/tflite_example:latest
+          tags: tflite_example:latest
 
   # Test the application
   test_app:
