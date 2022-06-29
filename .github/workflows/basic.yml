@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build
+name: Basic
 
 # Controls when the action will run. 
 on:
@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "ci_build_and_test_basic_project"
+  # Build the container application
   build_image:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -49,4 +49,26 @@ jobs:
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
           image: "tflite_example:latest"
+
+  # Test the application
+  test_app:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Download artifact
+      - name: Download image
+        uses: ishworkh/docker-image-artifact-download@v1
+        with:
+          image: "action_image_artifact_tflite_example:latest"
+
+      # Run application
+      - name: Run application
+        run: |
+          docker run -it --rm tflite_example
+
 
