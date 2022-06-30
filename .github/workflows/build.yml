@@ -49,10 +49,11 @@ jobs:
           push: true
           builder: ${{ steps.buildx.outputs.name }}
           tags: ghcr.io/${{ github.actor }}/tflite_example:latest
+          load: true
 
       # Upload artifact
       - name: Upload image
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: ghcr.io/${{ github.actor }}/tflite_example:latest
+          image: "ghcr.io/${{ github.actor }}/tflite_example:latest"
 
