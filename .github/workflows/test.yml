@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: output
-          path: app.txt
+          path: app.out
 
   # Test the application output
   test_app:
