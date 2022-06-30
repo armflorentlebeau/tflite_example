@@ -69,8 +69,8 @@ jobs:
           . sh2ju.sh
           juLogClean
           check_output () { # $1-string
-            #check if $1 is found in output.log
-            if grep -q "${1}"; output.log; then
+            #check if $1 is found in app.out
+            if grep -q "${1}"; app.out; then
               return 0
             else
               return 1
