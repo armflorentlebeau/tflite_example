@@ -29,7 +29,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Pull image
         run: |
           docker pull ghcr.io/${{ github.actor }}/tflite_example:latest
@@ -38,6 +38,12 @@ jobs:
       - name: Run application
         run: |
           docker run --rm ghcr.io/${{ github.actor }}/tflite_example:latest | tee app.out
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: output
+          path: app.txt
 
   # Test the application output
   test_app:
@@ -53,9 +59,14 @@ jobs:
         with:
           repository: manolo/shell2junit
 
+      - name: Download output
+        uses: actions/download-artifact@v3
+        with:
+          name: output
+
       - name: Unit tests
         run: |
-          . ./shell2junit/sh2ju.sh
+          . sh2ju.sh
           juLogClean
           juLog -name="military uniform" grep -q "0.919721: 653:military uniform" app.out
           juLog -name="windsor tie" grep -q "0.017762: 907:Windsor tie" app.out
