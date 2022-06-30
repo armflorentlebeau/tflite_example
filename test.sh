@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Requires https://github.com/manolo/shell2junit
+# Requires https://github.com/manolo/shell2junit in shel2junit folder
+. shell2junit/sh2ju.sh
 
 juLogClean
 

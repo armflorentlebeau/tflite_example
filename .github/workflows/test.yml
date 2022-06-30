@@ -70,7 +70,6 @@ jobs:
 
       - name: Unit tests
         run: |
-          . shell2junit/sh2ju.sh
           ./test.sh
 
       - name: Publish Test Report
