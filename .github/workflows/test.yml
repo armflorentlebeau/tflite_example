@@ -53,7 +53,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Download shell2junit
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+     # Download shell2junit
       - name: Checkout private tools
         uses: actions/checkout@v3
         with:
