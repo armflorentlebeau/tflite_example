@@ -54,5 +54,5 @@ jobs:
       - name: Upload image
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: "tflite_example:latest"
+          image: ghcr.io/${{ github.actor }}/tflite_example:latest
 
