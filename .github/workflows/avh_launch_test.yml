@@ -1,7 +1,7 @@
 # This workflow tests the application from the Docker image
 # It starts the AVH instance to run the tests and stops it afterwards
 
-name: Test
+name: AVH Launch Test
 
 # Controls when the action will run. 
 on:
