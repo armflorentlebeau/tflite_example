@@ -41,7 +41,7 @@ Run the tests:
 
 # Worflows
 
-## Build - Gihub-hosted
+## Build - Github-hosted
 
 In .github/workflows/build.yml you will find instructions to build the Docker image with the application.
 
@@ -55,14 +55,33 @@ To run the Test workflow, add a self-hosted runner from the _Settings_ tab of th
 
 In the menu, select _Linux_ as the runner image, and _ARM64_ as the achitecture. Copy and paste the instructions displayed on the target console to install and start the agent.
 
+Note: for the agent to start automatically at launch, configure it as a service
+
+```
+sudo ./svc.sh install
+sudo ./svc.sh start
+```
+
 ### Launch on self-hosted runner
 
 In .github/workflows/test.yml you will find instructions to deploy the Docker image on the self-hosted runner, execute and test the application.
 
-When a self-hosted runner is available, the worflow can be launched manually from the _Actions_ tab and _Build_ > _Run workflow_. The yml file can also be edited to trigger a build for every push or pull request. 
+When a self-hosted runner is available, the worflow can be launched manually from the _Actions_ tab and _Build_ > _Run workflow_. The yml file can also be edited to trigger a build for every push or pull request.
+
+## AVH Launch Test - self-hosted
+
+When an instance has been added as a runner and with the agent configured as a service, it can started automatically on demand with this workflow. This worflow will run the tests and stop the instance when completed.
+
+This workflow requires:
+
+- The ID of the instance configured as a github runner. You can get it from the URL when accessing the device in the AVH interface, e.g. `https://app.avh.arm.com/devices/<ID>/connect`. Save it as a github actions secret called `AVH_ID`.
+
+- The [AVH API token](https://intercom.help/arm-avh/en/articles/6137393-generating-an-avh-api-token). Save it as a github actions secret called `AVH_TOKEN`.
+
+It relies on a CLI bash tool to interact with the AVH API which can be found [here](https://github.com/armflorentlebeau/avhcli).
 
 # References
 
-- Original TF example code: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/examples/python/
-- TFlite example guide: https://www.tensorflow.org/lite/guide/python
-- TFlite Docker image example for Aarch64: https://github.com/ARM-software/Tool-Solutions/tree/master/docker/tensorflow-lite-aarch64
+- [Original TF example code](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/examples/python/)
+- [TFlite example guide](https://www.tensorflow.org/lite/guide/python)
+- [TFlite Docker image example for Aarch64](https://github.com/ARM-software/Tool-Solutions/tree/master/docker/tensorflow-lite-aarch64)
